@@ -1,0 +1,26 @@
+# Runtime parameters — loaded by AgentRegistry and the standalone API adapter,
+# then passed to Graph(config=...). Keep deployment identity in agent.yaml.
+
+max_retry: 3
+timeout_s: 30
+
+llm_provider: "azure_openai"
+llm_model: "azure-openai-deployment"
+temperature_classify: 0.0
+temperature_generate: 0.1
+
+# Memory store adapter: mock (development) | honcho | openviking (production).
+memory_store_adapter: "mock"
+memory_store_url: "http://localhost:8000"
+top_k_memory: 5
+embedding_model: "text-embedding-3-small"
+
+# Erasure-API-compatible hard-delete endpoint.
+erasure_api_url: "http://localhost:8001/erase"
+max_query_length: 2048
+customer_id_format: "hashed"
+
+memory_enabled: false
+hitl:
+  enabled: false
+  max_hitl: 5

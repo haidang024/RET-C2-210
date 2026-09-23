@@ -1,0 +1,40 @@
+[project]
+name = "ret-c2-210"
+version = "1.0.2"
+description = "RET-C2-210 Retail Customer Persistent Shopping Context & Preference Q&A Agent"
+requires-python = ">=3.11"
+# The framework (agenticstar-agentcore) is NOT a public-PyPI dependency; it is
+# provided by CI per repo arm,
+# or installed from the package registry for wheel-era repos.
+dependencies = [
+    "agenticstar-agentcore[marketplace,openai,platform-rag,platform-memory,platform-db,platform-storage-azure]==1.0.3",
+    "pyyaml==6.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.0.3",
+    "pytest-cov==5.0.0",
+    "pytest-asyncio==1.4.0",
+    "pytest-mock==3.14.0",
+    "ruff==0.4.4",
+    "mypy==1.10.0",
+]
+
+[build-system]
+requires = ["setuptools==68.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+exclude = "^src/examples/"
+# AgentCore 1.0.x does not publish a py.typed marker. Keep project code strict
+# while avoiding false failures at that external package boundary.
+ignore_missing_imports = true
+disallow_subclassing_any = false
+disallow_untyped_decorators = false
